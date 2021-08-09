@@ -15,6 +15,10 @@ jobs:
           node-version: 14.x
       - run: npm ci
       - run: npm run start -- Chrome Edge Firefox
+      - uses: actions/upload-artifact@v2
+        with:
+          name: screenshots
+          path: "*.png"
   test-mac:
     runs-on: macos-11
     steps:
@@ -24,4 +28,8 @@ jobs:
         with:
           node-version: 14.x
       - run: npm ci
-      - run: npm run start -- Safari
+      - run: npm run start -- Safari Chrome Edge Firefox
+      - uses: actions/upload-artifact@v2
+        with:
+          name: screenshots-mac
+          path: "*.png"
