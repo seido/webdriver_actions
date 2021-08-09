@@ -4,6 +4,7 @@ import chrome from "selenium-webdriver/chrome";
 import firefox from "selenium-webdriver/firefox";
 import safari from "selenium-webdriver/safari";
 import sharp from "sharp";
+import os from "os"
 
 type BrowserType = "Edge" | "Chrome" | "Firefox" | "Safari"
 
@@ -22,7 +23,12 @@ const createEdgeDriver = async ()=> {
 }
 
 const createFirefoxDriver = async ()=> {
-    const path = process.env.GECKOWEBDRIVER;
+    let path;
+    if(os.type()==='win32') {
+        path = process.env.GECKOWEBDRIVER && (process.env.GECKOWEBDRIVER + '\\geckodriver.exe');
+    } else {
+        path = process.env.GECKOWEBDRIVER && (process.env.GECKOWEBDRIVER + '/geckodriver');
+    }
     const service = new firefox.ServiceBuilder(path);
     const op = new firefox.Options()
         .headless()
