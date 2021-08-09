@@ -24,7 +24,7 @@ const createEdgeDriver = async ()=> {
 
 const createFirefoxDriver = async ()=> {
     let path;
-    if(os.type()==='win32') {
+    if(os.platform()==='win32') {
         path = process.env.GECKOWEBDRIVER && (process.env.GECKOWEBDRIVER + '\\geckodriver.exe');
     } else {
         path = process.env.GECKOWEBDRIVER && (process.env.GECKOWEBDRIVER + '/geckodriver');
