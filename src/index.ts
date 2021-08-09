@@ -37,7 +37,7 @@ const createSafariDriver = async ()=> {
         .setSafariOptions(op)
         .forBrowser(webdriver.Browser.CHROME)
         .build();
-    await driver.manage().window().setSize(1200, 800);
+    await driver.manage().window().setRect({x:0,y:0,width:1200,height:800});
     return driver;
 }
 
