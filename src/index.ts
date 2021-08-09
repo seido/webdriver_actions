@@ -10,6 +10,9 @@ type BrowserType = "Edge" | "Chrome" | "Firefox" | "Safari"
 const createEdgeDriver = async ()=> {
     const op = new edge.Options()
         .headless()
+        .addArguments(
+            "--lang=ja",
+            "--disable-gpu")
         .windowSize({width:1200,height:800});
     const driver = await new webdriver.Builder()
         .setEdgeOptions(op)
@@ -22,6 +25,7 @@ const createFirefoxDriver = async ()=> {
     const op = new firefox.Options()
         .headless()
         .windowSize({width:1200,height:800})
+        .setPreference("intl.accept_languages","ja")
         .addArguments(
             "--disable-gpu");
     const driver = await new webdriver.Builder()
@@ -35,7 +39,7 @@ const createSafariDriver = async ()=> {
     const op = new safari.Options();
     const driver = await new webdriver.Builder()
         .setSafariOptions(op)
-        .forBrowser(webdriver.Browser.CHROME)
+        .forBrowser(webdriver.Browser.SAFARI)
         .build();
     await driver.manage().window().setRect({x:0,y:0,width:1200,height:800});
     return driver;
@@ -46,6 +50,7 @@ const createChromeDriver = async ()=> {
         .headless()
         .windowSize({width:1200,height:800})
         .addArguments(
+            "--lang=ja",
             "--disable-gpu");
     const driver = await new webdriver.Builder()
         .setChromeOptions(op)
