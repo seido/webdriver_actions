@@ -22,6 +22,8 @@ const createEdgeDriver = async ()=> {
 }
 
 const createFirefoxDriver = async ()=> {
+    const path = process.env.GECKOWEBDRIVER;
+    const service = new firefox.ServiceBuilder(path);
     const op = new firefox.Options()
         .headless()
         .windowSize({width:1200,height:800})
@@ -30,6 +32,7 @@ const createFirefoxDriver = async ()=> {
             "--disable-gpu");
     const driver = await new webdriver.Builder()
         .setFirefoxOptions(op)
+        .setFirefoxService(service)
         .forBrowser(webdriver.Browser.FIREFOX)
         .build();
     return driver;
