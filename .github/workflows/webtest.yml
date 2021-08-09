@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: 14.x
       - run: npm ci
-      - run: defaults write com.apple.Safari AppleLanguages '("ja-JP")'
+      - run: defaults write NSGlobalDomain AppleLanguages '("ja-JP","en-US")'
       - run: npm run start -- Safari Chrome Edge Firefox
       - uses: actions/upload-artifact@v2
         with:
